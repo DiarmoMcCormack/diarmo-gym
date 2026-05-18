@@ -59,7 +59,7 @@
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid var(--line);
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(4, 1fr);
     padding: 8px 8px max(14px, env(safe-area-inset-bottom));
     z-index: 100;
   }
@@ -94,24 +94,15 @@
   .hero-delta.up { color: var(--danger); }
   .hero-delta.flat { color: var(--ink-dim); }
 
-  .goal-track { padding: 12px 0 4px; font-size: 12px; color: var(--ink-dim); }
-  .goal-bar { height: 6px; background: var(--bg-elev); margin-top: 8px; border-radius: 999px; overflow: hidden; }
-  .goal-bar-fill { height: 100%; background: var(--ink); border-radius: 999px; transition: width 0.6s ease; }
-  .goal-row { display: flex; justify-content: space-between; align-items: baseline; }
-  .goal-current { color: var(--ink); font-weight: 600; font-size: 13px; }
-
   .chart-wrap { position: relative; height: 200px; margin-top: 16px; }
 
   .input-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 14px; }
   .input-row.three { grid-template-columns: 1fr 1fr auto; }
 
-  .today-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .today-day { font-size: 18px; font-weight: 700; letter-spacing: -0.015em; }
   .badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: var(--bg-elev); color: var(--ink-2); }
   .badge.success { background: var(--success-soft); color: var(--success); }
   .badge.warn { background: var(--warn-soft); color: var(--warn); }
   .badge.muted { background: var(--bg-elev); color: var(--ink-dim); }
-  .session-empty { color: var(--ink-dim); font-size: 13px; padding: 10px 0; }
 
   .running-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
   .running-tile { background: var(--bg-soft); border-radius: var(--radius-sm); padding: 14px; text-align: left; }
@@ -172,6 +163,8 @@
   .creatine-check svg { width: 18px; height: 18px; }
   .creatine-streak { font-size: 12px; color: var(--ink-dim); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
   .creatine-streak .count { color: var(--ink); font-weight: 700; font-size: 14px; }
+  .creatine-stats { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-dim); }
+  .creatine-stats .count { color: var(--ink); font-weight: 700; font-size: 14px; }
 
   .parse-preview { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; margin-top: 14px; }
   .parse-preview-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 12px; font-weight: 600; color: var(--ink-2); }
@@ -286,60 +279,64 @@
 
   .empty-state { text-align: center; padding: 32px 20px; color: var(--ink-dim); font-size: 13px; }
 
-  /* Plan card */
-  .plan-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
-  .plan-title { font-size: 17px; font-weight: 700; letter-spacing: -0.015em; }
-  .plan-sub { font-size: 12px; color: var(--ink-dim); margin-top: 2px; font-weight: 500; }
-  .plan-progress { font-size: 12px; color: var(--ink-2); font-weight: 600; text-align: right; white-space: nowrap; }
-  .plan-bar { height: 6px; background: var(--bg-elev); border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
-  .plan-bar-fill { height: 100%; background: var(--ink); border-radius: 999px; transition: width 0.6s ease; }
-
-  .plan-today {
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 14px;
-    margin-bottom: 12px;
+  /* COACH */
+  .coach-head {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 12px 14px; margin-bottom: 14px;
+    gap: 10px;
   }
-  .plan-today.done { background: var(--success-soft); border-color: #d1fae5; }
-  .plan-today.rest { background: var(--bg-elev); }
-  .plan-today-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
-  .plan-today-day { font-size: 13px; font-weight: 700; }
-  .plan-today-type { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: var(--ink); color: white; }
-  .plan-today-type.done { background: var(--success); }
-  .plan-today-type.rest { background: var(--ink-dim); }
-  .plan-line {
+  .coach-week { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+  .coach-week-sub { font-size: 11px; color: var(--ink-dim); margin-top: 2px; }
+
+  .coach-card {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+  }
+  .coach-card-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line);
+  }
+  .coach-card-day { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .coach-card-day .date { color: var(--ink-dim); font-weight: 500; font-size: 12px; margin-left: 8px; }
+  .coach-card-type { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: var(--ink); color: white; }
+  .coach-card-type.done { background: var(--success); }
+
+  .coach-block { margin-bottom: 12px; }
+  .coach-block:last-of-type { margin-bottom: 0; }
+  .coach-block-label {
+    font-size: 10px; font-weight: 700; color: var(--ink-dim);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+  }
+  .coach-lift-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 10px;
+    padding: 6px 0; align-items: baseline;
+  }
+  .coach-lift-row + .coach-lift-row { border-top: 1px dashed var(--line); }
+  .coach-lift-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .coach-lift-name.compound { font-size: 15px; }
+  .coach-lift-detail {
     font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-    font-size: 12.5px; color: var(--ink-2);
-    padding: 4px 0;
-    line-height: 1.5;
+    font-size: 12.5px; color: var(--ink-2); white-space: nowrap;
   }
-  .plan-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .coach-last-ref {
+    font-size: 11px; color: var(--ink-dim); margin-top: 4px;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  .coach-last-ref .up { color: var(--success); font-weight: 600; }
+  .coach-last-ref .first { color: var(--warn); font-weight: 600; }
 
-  .plan-upcoming-head { font-size: 11px; font-weight: 600; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 6px; margin-bottom: 8px; }
-  .plan-upcoming-row {
-    display: grid; grid-template-columns: auto 1fr auto;
-    align-items: center; gap: 12px;
-    padding: 9px 2px;
-    border-bottom: 1px dashed var(--line);
-    font-size: 13px;
-  }
-  .plan-upcoming-row:last-child { border-bottom: none; }
-  .plan-upcoming-row.done { opacity: 0.55; }
-  .plan-upcoming-row.today { background: var(--bg-soft); margin: 0 -8px; padding: 9px 8px; border-radius: var(--radius-sm); border-bottom: 1px dashed var(--line); }
-  .plan-upcoming-day {
-    font-size: 11px; color: var(--ink-dim); font-weight: 600;
-    width: 56px;
-  }
-  .plan-upcoming-type { font-weight: 500; color: var(--ink); }
-  .plan-upcoming-week { font-size: 10px; color: var(--ink-dim); font-weight: 600; padding: 2px 7px; border-radius: 999px; background: var(--bg-elev); }
-  .plan-upcoming-row.done .plan-upcoming-week { background: var(--success-soft); color: var(--success); }
+  .coach-use { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .coach-use-btn { width: 100%; }
 
-  .creatine-stats { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-dim); }
-  .creatine-stats .count { color: var(--ink); font-weight: 700; font-size: 14px; }
+  .coach-done-note {
+    font-size: 12px; color: var(--success); font-weight: 600;
+    text-align: center; padding: 10px 0;
+  }
 
   @media (max-width: 420px) {
     .hero-value { font-size: 38px; }
+    .tab-btn { font-size: 10px; }
   }
 </style>
 </head>
@@ -348,7 +345,7 @@
 <header class="masthead">
   <div>
     <div class="masthead-title">Diarmo's Gym &amp; Weight</div>
-    <div class="masthead-sub">35-min protocol</div>
+    <div class="masthead-sub">30-min protocol</div>
   </div>
   <div class="masthead-meta">
     <div id="todayDate" class="date">—</div>
@@ -358,20 +355,6 @@
 
 <!-- HOME -->
 <main class="page active" id="page-home">
-
-  <div class="section-label">3-week block · progressive overload</div>
-  <div class="card" id="planCard">
-    <div class="plan-head">
-      <div>
-        <div class="plan-title" id="planTitle">—</div>
-        <div class="plan-sub" id="planSub">—</div>
-      </div>
-      <div class="plan-progress" id="planProgress">—</div>
-    </div>
-    <div class="plan-bar"><div class="plan-bar-fill" id="planBarFill" style="width:0%"></div></div>
-    <div id="planTodayWrap"></div>
-    <div id="planUpcomingWrap"></div>
-  </div>
 
   <div class="section-label">Bodyweight</div>
   <div class="card">
@@ -384,13 +367,6 @@
         <div class="hero-meta-label">7-day</div>
         <div class="hero-delta flat" id="bwDelta">—</div>
       </div>
-    </div>
-    <div class="goal-track">
-      <div class="goal-row">
-        <span>Goal · 89.0 kg by 14 May (Porto)</span>
-        <span class="goal-current" id="bwGoalProgress">—</span>
-      </div>
-      <div class="goal-bar"><div class="goal-bar-fill" id="bwGoalBar" style="width:0%"></div></div>
     </div>
     <div class="chart-wrap"><canvas id="bwChart"></canvas></div>
     <div class="input-row">
@@ -456,10 +432,10 @@
     <div class="input-group">
       <div class="input-label">Session name</div>
       <select id="sessionType">
+        <option value="Legs / Core">Legs / Core</option>
         <option value="Push">Push</option>
         <option value="Pull">Pull</option>
         <option value="Full Body">Full Body</option>
-        <option value="Legs / Core">Legs / Core</option>
         <option value="Uppers">Uppers</option>
         <option value="Chest / Arms">Chest / Arms</option>
         <option value="Hyrox">Hyrox</option>
@@ -479,6 +455,22 @@
 
   <div class="section-label">Recent sessions</div>
   <div id="historyList"></div>
+</main>
+
+<!-- COACH -->
+<main class="page" id="page-coach">
+  <div class="section-label">Coach · suggested week</div>
+  <div class="section-sub">Progressive overload on compounds · supersets &amp; accessories hold steady</div>
+
+  <div class="coach-head">
+    <div>
+      <div class="coach-week" id="coachWeekLabel">—</div>
+      <div class="coach-week-sub" id="coachWeekSub">—</div>
+    </div>
+    <button class="btn btn-secondary" onclick="regenerateCoach()" style="padding:9px 14px; font-size:13px;">Regenerate</button>
+  </div>
+
+  <div id="coachContent"></div>
 </main>
 
 <!-- WEEK -->
@@ -524,6 +516,10 @@
     <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
     Log
   </button>
+  <button class="tab-btn" data-tab="coach" onclick="switchTab('coach')">
+    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg></span>
+    Coach
+  </button>
   <button class="tab-btn" data-tab="week" onclick="switchTab('week')">
     <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
     Week
@@ -533,91 +529,63 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEY = 'diarmo_gym_v5';
+const STORAGE_KEY = 'diarmo_gym_v6';
 
-const MAIN_LIFTS = ['Bench Press','Pendlay Row','RDL','High Incline Bench Press','Chin Ups'];
+/* Four main compound lifts get progressive overload in Coach. Others (RDL, High Incline) stay aliased so historical sessions still match, but Coach doesn't overload them. */
+const MAIN_LIFTS = ['Back Squat','Bench Press','Pendlay Row','Chin Ups'];
 
 const LIFT_ALIASES = {
+  'Back Squat': ['back squat','squat','bb squat','barbell squat'],
   'Bench Press': ['bench','bench press','flat bench','paused bench','bb bench','barbell bench'],
   'Pendlay Row': ['pendlay','pendlay row','bb row','barbell row','bor'],
-  'RDL': ['rdl','romanian deadlift','romanian dl','stiff leg deadlift'],
+  'RDL': ['rdl','romanian deadlift','romanian dl','stiff leg deadlift','db rdl'],
   'High Incline Bench Press': ['high incline','high incline bench','high incline press','high incline db bench','high incline db press','high incline bench press','incline db bench','incline bench','incline db press'],
-  'Chin Ups': ['chin ups','chin-ups','chinup','chinups','chin up','pull ups','pullups','pull-ups','pull up','pullup','decentric chins','eccentric chins','weighted chins']
+  'Chin Ups': ['chin ups','chin-ups','chinup','chinups','chin up','pull ups','pullups','pull-ups','pull up','pullup','decentric chins','eccentric chins','weighted chins','wtd chins']
 };
 
-/* ────────────────────────────────────────────────────────────
-   3-WEEK STRICT BLOCK · 27 Apr → 14 May 2026
-   Mon Legs / Tue Push / Wed Pull / Thu Full Body
-   Progressive overload on the 5 main lifts each week.
-   ──────────────────────────────────────────────────────────── */
-const BLOCK_START = '2026-04-27';
-const BLOCK_END   = '2026-05-14';
-
-// Each day template returns the session string for a given week index (0-2)
-function buildPlannedSession(dayKind, weekIdx) {
-  const w = weekIdx; // 0, 1, 2
-  if (dayKind === 'Legs / Core') {
-    const rdlW = [95, 97.5, 100][w];
-    const gobW = [24, 24, 26][w];
-    return [
-      `1A - RDL 3 x 8 @${rdlW}`,
-      `1B - Goblet Squat 3 x 10 @${gobW}`,
-      `2A - Walking Lunge 2 x 10/10 @20`,
-      `2B - Hanging Leg Raise 3 x 10 @BW`
-    ];
+/* Coach: per-day session templates. Compounds progressively overload; supersets and accessories use last-logged weight (or default) and don't auto-bump. */
+const COACH_TEMPLATES = [
+  {
+    dayOfWeek: 1, // Monday
+    type: 'Legs / Core',
+    compound: { name: 'Back Squat', canonical: 'Back Squat', sets: 3, reps: 6, defaultWeight: 90 },
+    superset: [
+      { name: 'RDL', canonical: 'RDL', sets: 3, reps: 8, defaultWeight: 95 },
+      { name: 'Hanging Leg Raise', sets: 3, reps: 10, defaultWeight: 0, bw: true }
+    ],
+    accessory: { name: 'Walking Lunge', sets: 2, reps: '10/10', defaultWeight: 20 }
+  },
+  {
+    dayOfWeek: 2, // Tuesday
+    type: 'Push',
+    compound: { name: 'Bench', canonical: 'Bench Press', sets: 3, reps: 5, defaultWeight: 100 },
+    superset: [
+      { name: 'High Incline DB Bench', canonical: 'High Incline Bench Press', sets: 3, reps: 10, defaultWeight: 30 },
+      { name: 'Chest Flies', sets: 3, reps: 12, defaultWeight: 20 }
+    ],
+    accessory: { name: 'Tricep Pushdown', sets: 2, reps: 12, defaultWeight: 0 }
+  },
+  {
+    dayOfWeek: 3, // Wednesday
+    type: 'Pull',
+    compound: { name: 'Pendlay Row', canonical: 'Pendlay Row', sets: 3, reps: 6, defaultWeight: 65 },
+    superset: [
+      { name: 'Chin Ups', canonical: 'Chin Ups', sets: 3, reps: 8, defaultWeight: 0, bw: true },
+      { name: 'SA DB Row', sets: 3, reps: '10/10', defaultWeight: 32 }
+    ],
+    accessory: { name: 'DB Curl', sets: 2, reps: 10, defaultWeight: 14 }
+  },
+  {
+    dayOfWeek: 4, // Thursday
+    type: 'Full Body',
+    compound: { name: 'Weighted Chin Ups', canonical: 'Chin Ups', sets: 3, reps: 5, defaultWeight: 5, requireWeighted: true },
+    superset: [
+      { name: 'Flat DB Bench', sets: 3, reps: 10, defaultWeight: 30 },
+      { name: 'Cable Pull Down', sets: 3, reps: 12, defaultWeight: 0 }
+    ],
+    accessory: { name: 'Lateral Raise', sets: 2, reps: 12, defaultWeight: 8 }
   }
-  if (dayKind === 'Push') {
-    const benchW = [102.5, 105, 107.5][w];
-    const incW   = [32, 34, 36][w];
-    const ohpW   = [22, 24, 24][w];
-    return [
-      `1A - Bench 3 x 5 @${benchW}`,
-      `2A - High Incline DB Bench 3 x 10 @${incW}`,
-      `2B - DB Shoulder Press 3 x 8 @${ohpW}`,
-      `3A - Tricep Pushdown 3 x 12`
-    ];
-  }
-  if (dayKind === 'Pull') {
-    const rowW   = [80, 82.5, 85][w];
-    // You hit 3x9 BW on 22 Apr — push reps, then add load
-    const chinReps = ['3 x 9', '3 x 10', '3 x 8'][w];
-    const chinLoad = ['@BW', '@BW', '@5'][w]; // week 3 add 5kg weighted
-    const saRowW = [32, 34, 34][w];
-    const curlW  = [14, 16, 16][w];
-    return [
-      `1A - Pendlay Row 3 x 6 @${rowW}`,
-      `2A - Pull ups ${chinReps} ${chinLoad}`,
-      `3A - SA DB Row 3 x 10/10 @${saRowW}`,
-      `3B - DB Curl 3 x 10 @${curlW}`
-    ];
-  }
-  if (dayKind === 'Full Body') {
-    const benchW = [95, 97.5, 100][w];
-    const rdlW   = [95, 97.5, 100][w];
-    const decW   = [20, 22.5, 22.5][w];
-    const decReps = [3, 3, 4][w];
-    return [
-      `1A - Bench 3 x 6 @${benchW}`,
-      `1B - RDL 3 x 6 @${rdlW}`,
-      `2A - Decentric Chins 3 x ${decReps} @${decW}`,
-      `2B - Plank 3 x 45s`
-    ];
-  }
-  return [];
-}
-
-// Build the full 3-week schedule keyed by ISO date
-function buildPlan() {
-  const plan = {};
-  for (let w = 0; w < 3; w++) {
-    const monISO = addDays(BLOCK_START, w * 7);
-    plan[addDays(monISO, 0)] = { type: 'Legs / Core', weekIdx: w, lines: buildPlannedSession('Legs / Core', w) };
-    plan[addDays(monISO, 1)] = { type: 'Push',        weekIdx: w, lines: buildPlannedSession('Push', w) };
-    plan[addDays(monISO, 2)] = { type: 'Pull',        weekIdx: w, lines: buildPlannedSession('Pull', w) };
-    plan[addDays(monISO, 3)] = { type: 'Full Body',   weekIdx: w, lines: buildPlannedSession('Full Body', w) };
-  }
-  return plan;
-}
+];
 
 const DEFAULT_STATE = {
   weighins: [
@@ -628,7 +596,12 @@ const DEFAULT_STATE = {
     { date: '2026-04-18', kg: 92.00 }, { date: '2026-04-19', kg: 92.30 },
     { date: '2026-04-20', kg: 91.60 }, { date: '2026-04-21', kg: 91.85 },
     { date: '2026-04-22', kg: 91.80 }, { date: '2026-04-23', kg: 92.10 },
-    { date: '2026-04-24', kg: 90.80 }, { date: '2026-04-25', kg: 89.95 }
+    { date: '2026-04-24', kg: 90.80 }, { date: '2026-04-25', kg: 89.95 },
+    { date: '2026-04-27', kg: 91.10 }, { date: '2026-04-28', kg: 90.65 },
+    { date: '2026-04-29', kg: 90.65 }, { date: '2026-04-30', kg: 91.50 },
+    { date: '2026-05-01', kg: 91.10 }, { date: '2026-05-04', kg: 90.05 },
+    { date: '2026-05-05', kg: 90.80 }, { date: '2026-05-06', kg: 91.20 },
+    { date: '2026-05-08', kg: 92.00 }, { date: '2026-05-12', kg: 92.00 }
   ],
   sessions: [
     { id: 'seed-1', date: '2026-04-14', type: 'Full Body',
@@ -657,7 +630,7 @@ const DEFAULT_STATE = {
     { id: 'seed-4', date: '2026-04-20', type: 'Legs / Core',
       raw: '1A - Back Squat 3 x 8 @80\n1B - RDL 3 x 6 @95\n2A - Leg Extension 3 x 12\n2B - Core Machine 3 x 15\n3 - Plank 3 x 1',
       exercises: [
-        { name: 'Back Squat', sets: [{w:80,r:8},{w:80,r:8},{w:80,r:8}] },
+        { name: 'Back Squat', canonical: 'Back Squat', sets: [{w:80,r:8},{w:80,r:8},{w:80,r:8}] },
         { name: 'RDL', canonical: 'RDL', sets: [{w:95,r:6},{w:95,r:6},{w:95,r:6}] },
         { name: 'Leg extension', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
         { name: 'Core Machine', sets: [{w:0,r:15},{w:0,r:15},{w:0,r:15}] },
@@ -708,23 +681,163 @@ const DEFAULT_STATE = {
         { name: 'Lateral Raises Machine', sets: [{w:10,r:10},{w:10,r:10}] },
         { name: 'Single Arm Cable Pull Down', sets: [] }
       ]
+    },
+    { id: 'sess-1777284329302', date: '2026-04-27', type: 'Legs / Core',
+      raw: 'Monday 27 April\n\n1  - Back Squat 3 x 8 @85\n\n2 - RDL 3 x 8 @ 95\n\n3 - Leg Extensions 3 x 12\n\n4 - Hanging Leg Raises 3 x 12\n\n5 - Cable Crunch 3 x 10',
+      exercises: [
+        { name: 'Back Squat', canonical: 'Back Squat', sets: [{w:85,r:8},{w:85,r:8},{w:85,r:8}] },
+        { name: 'RDL', canonical: 'RDL', sets: [{w:95,r:8},{w:95,r:8},{w:95,r:8}] },
+        { name: 'Leg Extensions', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Hanging Leg Raises', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Cable Crunch', sets: [{w:0,r:10},{w:0,r:10},{w:0,r:10}] }
+      ]
+    },
+    { id: 'sess-1777354400457', date: '2026-04-28', type: 'Push',
+      raw: '1- Bench 3 x 5 @102.5\n\n2 - Incline Bench 2 x 6 @32\n\n3 - Chest Flies 3 x 12\n\n4A - Lateral Raises 2 x 10/10\n4B - Triceps 2 x 15\n\n5 - Skull Crusher 3 x 12',
+      exercises: [
+        { name: 'Bench', canonical: 'Bench Press', sets: [{w:102.5,r:5},{w:102.5,r:5},{w:102.5,r:5}] },
+        { name: 'Incline Bench', canonical: 'High Incline Bench Press', sets: [{w:32,r:6},{w:32,r:6}] },
+        { name: 'Chest Flies', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Lateral Raises', sets: [{w:0,r:10},{w:0,r:10}] },
+        { name: 'Triceps', sets: [{w:0,r:15},{w:0,r:15}] },
+        { name: 'Skull Crusher', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] }
+      ]
+    },
+    { id: 'sess-1777478444936', date: '2026-04-29', type: 'Pull',
+      raw: 'Wednesday 29 April Pull\n\n1 - Pendlay Row 3 x 8 @60\n\n2 - Decline Pull up 3 x 4 @ 20\n\n3A - CG pull down 3 x 12\n3B - Rear Delt Flies 3 x 12\n\n4A - Hammer Curls 2 x 10 @15\n4B - DB preach curls 2 x 10\n\n5 - Cable Curls SA',
+      exercises: [
+        { name: 'Pendlay Row', canonical: 'Pendlay Row', sets: [{w:60,r:8},{w:60,r:8},{w:60,r:8}] },
+        { name: 'Decline Pull up', canonical: 'Chin Ups', sets: [{w:20,r:4},{w:20,r:4},{w:20,r:4}] },
+        { name: 'CG pull down', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Rear Delt Flies', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Hammer Curls', sets: [{w:15,r:10},{w:15,r:10}] },
+        { name: 'DB preach curls', sets: [{w:0,r:10},{w:0,r:10}] },
+        { name: 'Cable Curls SA', sets: [] }
+      ]
+    },
+    { id: 'sess-1777610582063', date: '2026-04-30', type: 'Other',
+      raw: 'EMOM 25’\n\nWeighted Push Up\nPull Up\nIncline Bench\nChest Supported Row\nBB Curl',
+      exercises: [
+        { name: 'EMOM 25’', sets: [] },
+        { name: 'Weighted Push Up', sets: [] },
+        { name: 'Pull Up', canonical: 'Chin Ups', sets: [] },
+        { name: 'Incline Bench', canonical: 'High Incline Bench Press', sets: [] },
+        { name: 'Chest Supported Row', sets: [] },
+        { name: 'BB Curl', sets: [] }
+      ]
+    },
+    { id: 'sess-1777614677302', date: '2026-05-01', type: 'Other',
+      raw: 'BB Shoulder Press 3 × 10 · 45kg\n\nArnold Press 2 × 8 · 20kg\nLateral Raises 2 x 12 8kg\n\nDips 3 x 12\nCable Fly Curls 3 x 12\n\nCurl Machine 3 x 10\nSkull Crusher 3 x 10',
+      exercises: [
+        { name: 'BB Shoulder Press', sets: [{w:0,r:10},{w:0,r:10},{w:0,r:10}] },
+        { name: 'Arnold Press', sets: [{w:0,r:8},{w:0,r:8}] },
+        { name: 'Lateral Raises', sets: [{w:0,r:12},{w:0,r:12}] },
+        { name: 'Dips', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Cable Fly Curls', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Curl Machine', sets: [{w:0,r:10},{w:0,r:10},{w:0,r:10}] },
+        { name: 'Skull Crusher', sets: [{w:0,r:10},{w:0,r:10},{w:0,r:10}] }
+      ]
+    },
+    { id: 'sess-1777905084606', date: '2026-05-04', type: 'Push',
+      raw: 'Monday - 4 May - Push\n\n1 - Bench 3 x 5 @105 \n\n2 - Flies (Machine) 3 x 12 @40kg\n\n3 - Lateral Raises 3 x 12 @8kg\n\n4A - Incline Bicep 3 x 12 @ 14\n4B - Tricep Ovehead DB 3 x 12 @20\n',
+      exercises: [
+        { name: 'Bench', canonical: 'Bench Press', sets: [{w:105,r:5},{w:105,r:5},{w:105,r:5}] },
+        { name: 'Flies', sets: [{w:40,r:12},{w:40,r:12},{w:40,r:12}] },
+        { name: 'Lateral Raises', sets: [{w:8,r:12},{w:8,r:12},{w:8,r:12}] },
+        { name: 'Incline Bicep', sets: [{w:14,r:12},{w:14,r:12},{w:14,r:12}] },
+        { name: 'Tricep Ovehead DB', sets: [{w:20,r:12},{w:20,r:12},{w:20,r:12}] }
+      ]
+    },
+    { id: 'sess-1777967962357', date: '2026-05-05', type: 'Pull',
+      raw: 'Pendlay Row 3 × 8 @65kg\nPull ups 3 × 10 · BW\nSA DB Row 2 × 10 @ 34kg\nCurl Machine 3 × 12 · BW\nDB Curl 2 × 6 · 12kg',
+      exercises: [
+        { name: 'Pendlay Row', canonical: 'Pendlay Row', sets: [{w:65,r:8},{w:65,r:8},{w:65,r:8}] },
+        { name: 'Pull ups', canonical: 'Chin Ups', sets: [{w:0,r:10},{w:0,r:10},{w:0,r:10}] },
+        { name: 'SA DB Row', sets: [{w:34,r:10},{w:34,r:10}] },
+        { name: 'Curl Machine', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'DB Curl', sets: [{w:0,r:6},{w:0,r:6}] }
+      ]
+    },
+    { id: 'sess-1778063150524', date: '2026-05-06', type: 'Legs / Core',
+      raw: '1A - RDL 3 x 6 @100\n1B - Leg Extensions 3 x 12\n\nCore',
+      exercises: [
+        { name: 'RDL', canonical: 'RDL', sets: [{w:100,r:6},{w:100,r:6},{w:100,r:6}] },
+        { name: 'Leg Extensions', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Core', sets: [] }
+      ]
+    },
+    { id: 'sess-1778216394575', date: '2026-05-07', type: 'Uppers',
+      raw: 'Thursday 7 May - Shoulders / Arms\n\n1 - Seated BB Press 3 x 12 @45\n\n2A - Arnold Press 2 x 8 @ 22\n2B - Lateral Raises 2 x 12 @8',
+      exercises: [
+        { name: 'Seated BB Press', sets: [{w:45,r:12},{w:45,r:12},{w:45,r:12}] },
+        { name: 'Arnold Press', sets: [{w:22,r:8},{w:22,r:8}] },
+        { name: 'Lateral Raises', sets: [{w:8,r:12},{w:8,r:12}] }
+      ]
+    },
+    { id: 'sess-1778218263252', date: '2026-05-08', type: 'Chest / Arms',
+      raw: 'Friday - Uppers\n\n1A - Bench 3 x 8 @90\n2A - WTD Chins 3 x 5 @10\n\n3A - Chest Flies 2 x 12\n3B - Lat Pull Down 2 x 12\n\nArms',
+      exercises: [
+        { name: 'Bench', canonical: 'Bench Press', sets: [{w:90,r:8},{w:90,r:8},{w:90,r:8}] },
+        { name: 'WTD Chins', canonical: 'Chin Ups', sets: [{w:10,r:5},{w:10,r:5},{w:10,r:5}] },
+        { name: 'Chest Flies', sets: [{w:0,r:12},{w:0,r:12}] },
+        { name: 'Lat Pull Down', sets: [{w:0,r:12},{w:0,r:12}] },
+        { name: 'Arms', sets: [] }
+      ]
+    },
+    { id: 'sess-1778522863159', date: '2026-05-11', type: 'Legs / Core',
+      raw: 'Monday 11 May - Legs\n\nSquat 3 x 8 @90\n\nLeg Extensions 3 x 12 \n\nDB RDL 3 x 8 @36\n\nCable Core Crunches 3 x 15\n ',
+      exercises: [
+        { name: 'Squat', canonical: 'Back Squat', sets: [{w:90,r:8},{w:90,r:8},{w:90,r:8}] },
+        { name: 'Leg Extensions', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'DB RDL', canonical: 'RDL', sets: [{w:36,r:8},{w:36,r:8},{w:36,r:8}] },
+        { name: 'Cable Core Crunches', sets: [{w:0,r:15},{w:0,r:15},{w:0,r:15}] }
+      ]
+    },
+    { id: 'sess-1778565003169', date: '2026-05-12', type: 'Push',
+      raw: '1A - Bench 3 x 5 @107.5\n\n2A - Chest Flies 3 x 12\n2B - Incline Push Up 3 x 10\n\n3A - Tricep Pushdown 3 x 12',
+      exercises: [
+        { name: 'Bench', canonical: 'Bench Press', sets: [{w:107.5,r:5},{w:107.5,r:5},{w:107.5,r:5}] },
+        { name: 'Chest Flies', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Incline Push Up', sets: [{w:0,r:10},{w:0,r:10},{w:0,r:10}] },
+        { name: 'Tricep Pushdown', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] }
+      ]
+    },
+    { id: 'sess-1778649884900', date: '2026-05-13', type: 'Pull',
+      raw: '1A - Pendlay Row 3 x 8 @70\n2a - Close Grip Pull Down 3 x 12\n3a - Row Machine 3 x 12\n4a - Bicep 10’',
+      exercises: [
+        { name: 'Pendlay Row', canonical: 'Pendlay Row', sets: [{w:70,r:8},{w:70,r:8},{w:70,r:8}] },
+        { name: 'Close Grip Pull Down', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Row Machine', sets: [{w:0,r:12},{w:0,r:12},{w:0,r:12}] },
+        { name: 'Bicep 10’', sets: [] }
+      ]
     }
   ],
-  runs: [{ id: 'run-1', date: '2026-04-14', km: 5.0 }],
-  creatine: {},
-  goal: { target: 89, by: '2026-05-14' }
+  runs: [
+    { id: 'run-1', date: '2026-04-14', km: 5.0 },
+    { id: 'run-1777955784931', date: '2026-05-04', km: 6.0 },
+    { id: 'run-1778013965803', date: '2026-05-05', km: 5.0 }
+  ],
+  creatine: {
+    '2026-04-26': false, '2026-04-27': true, '2026-04-28': true, '2026-04-29': true,
+    '2026-04-30': true, '2026-05-01': false, '2026-05-02': true, '2026-05-04': true,
+    '2026-05-05': true, '2026-05-06': true, '2026-05-08': true, '2026-05-09': true,
+    '2026-05-11': true, '2026-05-13': true
+  },
+  goal: null,
+  coach: null
 };
 
 let state = loadState();
+
 function loadState() {
   try {
     let raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) {
-      // migrate from previous version if present (try newest first)
-      const legacy = localStorage.getItem('diarmo_gym_v4') || localStorage.getItem('diarmo_gym_v3');
+      const legacy = localStorage.getItem('diarmo_gym_v5') || localStorage.getItem('diarmo_gym_v4') || localStorage.getItem('diarmo_gym_v3');
       if (legacy) {
         const parsedLegacy = JSON.parse(legacy);
-        parsedLegacy.goal = { target: 89, by: '2026-05-14' };
+        parsedLegacy.goal = null;
+        if (!('coach' in parsedLegacy)) parsedLegacy.coach = null;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(parsedLegacy));
         raw = JSON.stringify(parsedLegacy);
       }
@@ -733,8 +846,7 @@ function loadState() {
     const parsed = JSON.parse(raw);
     let merged = { ...structuredClone(DEFAULT_STATE), ...parsed };
 
-    // FORCE RESEED: merge any missing seed weigh-ins/sessions/runs forward.
-    // Stored data wins for matching keys; seed fills gaps.
+    // Forward-merge seed data so new device updates don't lose history.
     const seed = DEFAULT_STATE;
     const wDates = new Set((merged.weighins || []).map(w => w.date));
     seed.weighins.forEach(w => { if (!wDates.has(w.date)) merged.weighins.push({ ...w }); });
@@ -750,10 +862,10 @@ function loadState() {
     const rIds = new Set((merged.runs || []).map(r => r.id));
     seed.runs.forEach(r => { if (!rIds.has(r.id)) merged.runs.push({ ...r }); });
 
-    // Always force the new goal regardless of what's stored
-    merged.goal = { target: 89, by: '2026-05-14' };
+    // v6: goal cleared
+    merged.goal = null;
+    if (!('coach' in merged)) merged.coach = null;
 
-    // Persist the merged state so next load is clean
     localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
     return merged;
   } catch (e) { return structuredClone(DEFAULT_STATE); }
@@ -793,6 +905,7 @@ function importBackup(event) {
         return;
       }
       state = { ...structuredClone(DEFAULT_STATE), ...data };
+      state.goal = null;
       saveState();
       toast('Backup imported');
       renderHome();
@@ -807,7 +920,8 @@ function importBackup(event) {
 }
 
 const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const DEFAULT_SPLIT = ['Rest','Push','Pull','Full Body','Legs / Core','Hyrox','Uppers'];
+const DAY_NAMES_LONG = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DEFAULT_SPLIT = ['Other','Legs / Core','Push','Pull','Full Body','Other','Other'];
 
 function toISO(dt) {
   const tz = dt.getTimezoneOffset() * 60000;
@@ -825,6 +939,10 @@ function isoToPrettyShort(iso) {
 function isoDayName(iso) {
   const [y,m,d] = iso.split('-').map(Number);
   return DAY_NAMES[new Date(y,m-1,d).getDay()];
+}
+function isoDayOfWeek(iso) {
+  const [y,m,d] = iso.split('-').map(Number);
+  return new Date(y,m-1,d).getDay();
 }
 function toast(msg) {
   const t = document.getElementById('toast');
@@ -916,10 +1034,13 @@ function parseLine(rawLine) {
 }
 function matchCanonical(name) {
   const n = name.trim().toLowerCase().replace(/\s+/g,' ');
+  // 1) exact match — works for any alias length
   for (const [canonical, aliases] of Object.entries(LIFT_ALIASES))
     for (const alias of aliases) if (n === alias) return canonical;
+  // 2) substring match only for multi-word aliases — avoids 'squat' alone
+  //    matching 'goblet squat', or 'bench' alone matching 'flat db bench'.
   for (const [canonical, aliases] of Object.entries(LIFT_ALIASES))
-    for (const alias of aliases) if (n.includes(alias)) return canonical;
+    for (const alias of aliases) if (alias.includes(' ') && n.includes(alias)) return canonical;
   return null;
 }
 function parseSession(text) {
@@ -929,7 +1050,7 @@ function parseSession(text) {
     if (!line.trim()) continue;
     if (/^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)/i.test(line.trim())) continue;
     if (/^week\s+beginning/i.test(line.trim())) continue;
-    if (/three\s+g['']?s/i.test(line.trim())) continue;
+    if (/three\s+g['’]?s/i.test(line.trim())) continue;
     if (/^\d+x\s+(grateful|proud|looking)/i.test(line.trim())) continue;
     const parsed = parseLine(line);
     if (parsed) exercises.push(parsed);
@@ -945,6 +1066,7 @@ function switchTab(name) {
   window.scrollTo({ top: 0 });
   if (name === 'home') renderHome();
   if (name === 'log') renderLog();
+  if (name === 'coach') renderCoach();
   if (name === 'week') renderWeek();
 }
 
@@ -956,116 +1078,9 @@ function renderHeader() {
 }
 function renderHome() {
   renderHeader();
-  renderPlan();
   renderBodyweight();
   renderCreatine();
   renderRunning();
-}
-
-/* PLAN · 3-week block */
-function renderPlan() {
-  const plan = buildPlan();
-  const today = todayISO();
-  const allDates = Object.keys(plan).sort();
-  // count completion: a day is "done" if a session is logged for that ISO date
-  const loggedDates = new Set(state.sessions.map(s => s.date));
-  const totalDays = allDates.length;
-  const doneDays = allDates.filter(d => loggedDates.has(d)).length;
-  const pct = Math.round((doneDays / totalDays) * 100);
-
-  // header
-  const inBlock = today >= BLOCK_START && today <= BLOCK_END;
-  const startsIn = !inBlock && today < BLOCK_START
-    ? `Starts ${isoToPrettyShort(BLOCK_START)}`
-    : (today > BLOCK_END ? 'Block complete' : null);
-  document.getElementById('planTitle').textContent = '4-day strict block';
-  document.getElementById('planSub').textContent =
-    startsIn ? startsIn
-    : `${isoToPrettyShort(BLOCK_START)} → ${isoToPrettyShort(BLOCK_END)} · Mon–Thu`;
-  document.getElementById('planProgress').textContent = `${doneDays} / ${totalDays} sessions · ${pct}%`;
-  document.getElementById('planBarFill').style.width = pct + '%';
-
-  // today's planned session (if today is a plan day)
-  const todayWrap = document.getElementById('planTodayWrap');
-  const todayPlan = plan[today];
-  if (todayPlan) {
-    const isDone = loggedDates.has(today);
-    todayWrap.innerHTML = `
-      <div class="plan-today ${isDone ? 'done' : ''}">
-        <div class="plan-today-head">
-          <div class="plan-today-day">Today · ${todayPlan.type}</div>
-          <div class="plan-today-type ${isDone ? 'done' : ''}">${isDone ? '✓ Logged' : 'Week ' + (todayPlan.weekIdx + 1)}</div>
-        </div>
-        ${todayPlan.lines.map(l => `<div class="plan-line">${l}</div>`).join('')}
-        ${!isDone ? `
-          <div class="plan-actions">
-            <button class="btn btn-secondary" onclick="copyPlanForToday()">Copy to clipboard</button>
-            <button class="btn" onclick="loadPlanIntoLog('${today}')">Open in Log</button>
-          </div>` : ''}
-      </div>`;
-  } else if (inBlock) {
-    const dow = isoDayName(today);
-    todayWrap.innerHTML = `
-      <div class="plan-today rest">
-        <div class="plan-today-head">
-          <div class="plan-today-day">Today · ${dow}</div>
-          <div class="plan-today-type rest">Rest</div>
-        </div>
-        <div class="plan-line" style="color:var(--ink-dim);">No planned session — recovery day.</div>
-      </div>`;
-  } else {
-    todayWrap.innerHTML = '';
-  }
-
-  // upcoming list (next 7 plan days from today, or full block if pre-block)
-  const upcomingWrap = document.getElementById('planUpcomingWrap');
-  const upcomingDates = allDates.filter(d => d > today).slice(0, 7);
-  if (upcomingDates.length === 0) {
-    upcomingWrap.innerHTML = '';
-  } else {
-    const rows = upcomingDates.map(d => {
-      const p = plan[d];
-      const dayName = isoDayName(d);
-      const dateShort = isoToPrettyShort(d);
-      const isDone = loggedDates.has(d);
-      return `
-        <div class="plan-upcoming-row ${isDone ? 'done' : ''}" onclick="loadPlanIntoLog('${d}')" style="cursor:pointer;">
-          <div class="plan-upcoming-day">${dayName} ${dateShort}</div>
-          <div class="plan-upcoming-type">${p.type}</div>
-          <div class="plan-upcoming-week">W${p.weekIdx + 1}${isDone ? ' ✓' : ''}</div>
-        </div>`;
-    }).join('');
-    upcomingWrap.innerHTML = `<div class="plan-upcoming-head">Upcoming</div>${rows}`;
-  }
-}
-
-function copyPlanForToday() {
-  const plan = buildPlan();
-  const today = todayISO();
-  const p = plan[today];
-  if (!p) { toast('No session planned today'); return; }
-  const text = p.lines.join('\n');
-  navigator.clipboard.writeText(text).then(
-    () => toast('Copied to clipboard'),
-    () => toast('Copy failed')
-  );
-}
-
-function loadPlanIntoLog(iso) {
-  const plan = buildPlan();
-  const p = plan[iso];
-  if (!p) return;
-  switchTab('log');
-  // wait for the page to be active so inputs exist
-  setTimeout(() => {
-    document.getElementById('sessionDate').value = iso;
-    const sel = document.getElementById('sessionType');
-    sel.value = p.type;
-    sel.dataset.touched = '1';
-    document.getElementById('pasteArea').value = p.lines.join('\n');
-    livePreview();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 50);
 }
 
 /* BODYWEIGHT */
@@ -1086,14 +1101,6 @@ function renderBodyweight() {
     el.className = 'hero-delta ' + (delta < -0.05 ? 'down' : delta > 0.05 ? 'up' : 'flat');
     el.textContent = (delta > 0 ? '+' : '') + delta.toFixed(2) + ' kg';
   } else { document.getElementById('bwDelta').textContent = '—'; }
-  if (latest && state.goal) {
-    const start = weighins[0].kg, target = state.goal.target, current = latest.kg;
-    const totalToLose = start - target, lost = start - current;
-    const pct = totalToLose > 0 ? Math.max(0, Math.min(100, (lost / totalToLose) * 100)) : 0;
-    document.getElementById('bwGoalBar').style.width = pct + '%';
-    const remaining = current - target;
-    document.getElementById('bwGoalProgress').textContent = remaining > 0 ? `${remaining.toFixed(2)} kg to go` : 'Goal hit ✓';
-  }
   renderChart(weighins);
 }
 function renderChart(weighins) {
@@ -1102,7 +1109,6 @@ function renderChart(weighins) {
   if (bwChart) bwChart.destroy();
   const labels = weighins.map(w => isoToPretty(w.date));
   const data = weighins.map(w => w.kg);
-  const goalData = new Array(weighins.length).fill(state.goal.target);
   bwChart = new Chart(ctx, {
     type: 'line',
     data: { labels, datasets: [
@@ -1117,8 +1123,7 @@ function renderChart(weighins) {
         },
         borderWidth: 2, pointRadius: 3,
         pointBackgroundColor: '#111111', pointBorderColor: '#ffffff', pointBorderWidth: 1.5,
-        fill: true, tension: 0.3 },
-      { label: 'Goal', data: goalData, borderColor: '#cccccc', borderWidth: 1, borderDash: [4,4], pointRadius: 0, fill: false }
+        fill: true, tension: 0.3 }
     ]},
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -1129,7 +1134,7 @@ function renderChart(weighins) {
           titleFont: { family: 'Inter', size: 11, weight: '500' },
           bodyFont: { family: 'Inter', size: 13, weight: '600' },
           padding: 8, displayColors: false,
-          callbacks: { label: (c) => c.datasetIndex === 0 ? `${c.parsed.y.toFixed(2)} kg` : `Goal: ${c.parsed.y} kg` }
+          callbacks: { label: (c) => `${c.parsed.y.toFixed(2)} kg` }
         }
       },
       scales: {
@@ -1157,7 +1162,7 @@ function logWeight() {
   renderBodyweight();
 }
 
-/* CREATINE */
+/* CREATINE — streak + last-30-day hit ratio (no block) */
 function toggleCreatine() {
   const today = todayISO();
   state.creatine[today] = !state.creatine[today];
@@ -1182,22 +1187,16 @@ function renderCreatine() {
   }
   document.getElementById('creatineStreak').textContent = streak;
 
-  // Hit ratio across the 3-week block (so far)
+  // 30-day rolling hit ratio
   const ratioEl = document.getElementById('creatineHitRatio');
   if (ratioEl) {
-    let elapsed = 0, hits = 0;
-    let d = BLOCK_START;
-    while (d <= BLOCK_END && d <= today) {
-      elapsed++;
-      if (state.creatine[d]) hits++;
-      d = addDays(d, 1);
+    let hits = 0;
+    for (let i = 0; i < 30; i++) {
+      const iso = addDays(today, -i);
+      if (state.creatine[iso]) hits++;
     }
-    if (elapsed === 0) {
-      ratioEl.textContent = 'Block starts ' + isoToPrettyShort(BLOCK_START);
-    } else {
-      const pct = Math.round((hits / elapsed) * 100);
-      ratioEl.innerHTML = `<span class="count">${hits}</span> / ${elapsed} · ${pct}%`;
-    }
+    const pct = Math.round((hits / 30) * 100);
+    ratioEl.innerHTML = `<span class="count">${hits}</span> / 30 · ${pct}%`;
   }
 }
 
@@ -1232,7 +1231,8 @@ function renderRunning() {
   document.getElementById('runKmThisWeek').innerHTML =
     `${totalKm.toFixed(totalKm % 1 === 0 ? 0 : 1)}<span class="unit">km</span>`;
   document.getElementById('runCountThisWeek').textContent = thisWeekRuns.length;
-  const recent = [...runs].sort((a,b) => b.date.localeCompare(a.date)).slice(0, 4);
+  // Recent list is scoped to this week only — resets every Monday.
+  const recent = [...thisWeekRuns].sort((a,b) => b.date.localeCompare(a.date));
   const recentEl = document.getElementById('runRecent');
   if (recent.length === 0) { recentEl.innerHTML = ''; return; }
   recentEl.innerHTML = `<div class="running-recent">${recent.map(r => `
@@ -1257,11 +1257,26 @@ function renderLog() {
   livePreview();
   renderHistory();
 }
-function getLastBestSet(canonical) {
+function getLastBestSet(canonical, opts) {
+  opts = opts || {};
   const sessions = [...state.sessions].sort((a,b) => b.date.localeCompare(a.date));
   for (const s of sessions) for (const ex of s.exercises) {
-    if (ex.canonical === canonical && ex.sets.length > 0) {
-      const best = ex.sets.reduce((a,b) => (a.w * a.r >= b.w * b.r ? a : b));
+    if (ex.canonical === canonical) {
+      const filteredSets = opts.requireWeighted ? ex.sets.filter(st => st.w > 0) : ex.sets;
+      if (filteredSets.length === 0) continue;
+      const best = filteredSets.reduce((a,b) => (a.w * a.r >= b.w * b.r ? a : b));
+      return { date: s.date, set: best };
+    }
+  }
+  return null;
+}
+function findLatestByName(name) {
+  const norm = (s) => s.trim().toLowerCase().replace(/\s+/g,' ');
+  const target = norm(name);
+  const sessions = [...state.sessions].sort((a,b) => b.date.localeCompare(a.date));
+  for (const s of sessions) for (const ex of s.exercises) {
+    if (norm(ex.name) === target && ex.sets.length > 0) {
+      const best = ex.sets.reduce((a,b) => (a.w*a.r >= b.w*b.r ? a : b));
       return { date: s.date, set: best };
     }
   }
@@ -1322,7 +1337,7 @@ function saveParsed() {
   if (!text.trim()) { toast('Paste your session first'); return; }
   if (!date) { toast('Pick a date'); return; }
   const { exercises } = parseSession(text);
-  if (exercises.length === 0) { toast('Couldn\'t parse any exercises'); return; }
+  if (exercises.length === 0) { toast("Couldn't parse any exercises"); return; }
   const session = {
     id: 'sess-' + Date.now(), date, type, raw: text,
     exercises: exercises.map(e => ({ name: e.name, canonical: e.canonical || undefined, sets: e.sets }))
@@ -1337,7 +1352,6 @@ function saveParsed() {
   livePreview();
   toast('Session saved');
   renderHistory();
-  renderHome();
 }
 function renderHistory() {
   const list = document.getElementById('historyList');
@@ -1367,7 +1381,180 @@ function deleteSession(id) {
   saveState();
   toast('Deleted');
   renderHistory();
-  renderHome();
+}
+
+/* COACH */
+function progressionForCompound(c) {
+  // Linear +2.5 kg from latest matching set; respect requireWeighted (Thu chins)
+  if (!c.canonical) return { weight: c.defaultWeight, last: null };
+  const last = getLastBestSet(c.canonical, { requireWeighted: !!c.requireWeighted });
+  if (!last) return { weight: c.defaultWeight, last: null };
+  return { weight: last.set.w + 2.5, last };
+}
+function suggestStatic(item) {
+  // bw flag forces bodyweight, regardless of history (e.g. Pull-day Chin Ups
+  // even though canonical history has weighted variants).
+  if (item.bw) return { weight: 0, last: null };
+  // Prefer exact-name match — keeps variants apart (barbell RDL vs DB RDL,
+  // flat DB bench vs high incline DB bench, etc.).
+  const byName = findLatestByName(item.name);
+  if (byName) return { weight: byName.set.w, last: byName };
+  // Fall back to canonical lookup for anything that's an aliased main lift.
+  if (item.canonical) {
+    const last = getLastBestSet(item.canonical, { requireWeighted: !!item.requireWeighted });
+    if (last) return { weight: last.set.w, last };
+  }
+  return { weight: item.defaultWeight, last: null };
+}
+function generateCoachWeek(monISO) {
+  const days = COACH_TEMPLATES.map(tpl => {
+    const date = addDays(monISO, tpl.dayOfWeek - 1);
+    const compoundProg = progressionForCompound(tpl.compound);
+    const compound = {
+      name: tpl.compound.name,
+      canonical: tpl.compound.canonical,
+      sets: tpl.compound.sets,
+      reps: tpl.compound.reps,
+      weight: compoundProg.weight,
+      bw: !!tpl.compound.bw,
+      last: compoundProg.last
+    };
+    const superset = tpl.superset.map(item => {
+      const stat = suggestStatic(item);
+      return {
+        name: item.name, canonical: item.canonical,
+        sets: item.sets, reps: item.reps,
+        weight: stat.weight, bw: !!item.bw
+      };
+    });
+    const accStat = suggestStatic(tpl.accessory);
+    const accessory = {
+      name: tpl.accessory.name, canonical: tpl.accessory.canonical,
+      sets: tpl.accessory.sets, reps: tpl.accessory.reps,
+      weight: accStat.weight, bw: !!tpl.accessory.bw
+    };
+    return { date, dayOfWeek: tpl.dayOfWeek, type: tpl.type, compound, superset, accessory };
+  });
+  return { weekStart: monISO, days, generatedAt: new Date().toISOString() };
+}
+function ensureCoach() {
+  const monISO = mondayOfISO(todayISO());
+  if (!state.coach || state.coach.weekStart !== monISO) {
+    state.coach = generateCoachWeek(monISO);
+    saveState();
+  }
+  return state.coach;
+}
+function regenerateCoach() {
+  const monISO = mondayOfISO(todayISO());
+  state.coach = generateCoachWeek(monISO);
+  saveState();
+  toast('Plan regenerated');
+  renderCoach();
+}
+function formatLiftLine(prefix, item) {
+  const repsStr = String(item.reps);
+  let weightTag = '';
+  if (item.bw && item.weight === 0) weightTag = ' @BW';
+  else if (item.weight > 0) weightTag = ` @${fmtWeight(item.weight)}`;
+  return `${prefix} - ${item.name} ${item.sets} x ${repsStr}${weightTag}`;
+}
+function buildPasteForDay(day) {
+  const lines = [];
+  lines.push(formatLiftLine('1A', day.compound));
+  day.superset.forEach((item, i) => {
+    const prefix = `2${String.fromCharCode(65 + i)}`; // 2A, 2B, 2C
+    lines.push(formatLiftLine(prefix, item));
+  });
+  lines.push(formatLiftLine('3A', day.accessory));
+  return lines.join('\n');
+}
+function useSession(dateISO) {
+  const coach = ensureCoach();
+  const day = coach.days.find(d => d.date === dateISO);
+  if (!day) return;
+  switchTab('log');
+  setTimeout(() => {
+    document.getElementById('sessionDate').value = day.date;
+    const sel = document.getElementById('sessionType');
+    sel.value = day.type;
+    sel.dataset.touched = '1';
+    document.getElementById('pasteArea').value = buildPasteForDay(day);
+    livePreview();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 50);
+}
+function renderCoach() {
+  const coach = ensureCoach();
+  const sunISO = addDays(coach.weekStart, 6);
+  document.getElementById('coachWeekLabel').textContent =
+    `${isoToPrettyShort(coach.weekStart)} → ${isoToPrettyShort(sunISO)}`;
+  document.getElementById('coachWeekSub').textContent =
+    'Generated ' + new Date(coach.generatedAt).toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+
+  const loggedDates = new Set(state.sessions.map(s => s.date));
+  const today = todayISO();
+  const wrap = document.getElementById('coachContent');
+  wrap.innerHTML = coach.days.map(day => {
+    const isDone = loggedDates.has(day.date);
+    const dayLong = DAY_NAMES_LONG[isoDayOfWeek(day.date)];
+    const dateShort = isoToPrettyShort(day.date);
+    const compoundDetail = `${day.compound.sets} × ${day.compound.reps}` +
+      (day.compound.weight > 0 ? ` @ ${fmtWeight(day.compound.weight)}kg`
+        : day.compound.bw ? ' @ BW' : '');
+    const lastRef = day.compound.last
+      ? `<div class="coach-last-ref">Last: ${fmtWeight(day.compound.last.set.w)}${day.compound.last.set.w>0?'kg':''} × ${day.compound.last.set.r} · ${isoToPrettyShort(day.compound.last.date)} → <span class="up">+2.5kg</span></div>`
+      : `<div class="coach-last-ref"><span class="first">No history · starting fresh</span></div>`;
+    const supersetRows = day.superset.map(item => {
+      const detail = `${item.sets} × ${item.reps}` +
+        (item.weight > 0 ? ` @ ${fmtWeight(item.weight)}kg`
+          : item.bw ? ' @ BW' : '');
+      return `<div class="coach-lift-row">
+        <div class="coach-lift-name">${item.name}</div>
+        <div class="coach-lift-detail">${detail}</div>
+      </div>`;
+    }).join('');
+    const accDetail = `${day.accessory.sets} × ${day.accessory.reps}` +
+      (day.accessory.weight > 0 ? ` @ ${fmtWeight(day.accessory.weight)}kg`
+        : day.accessory.bw ? ' @ BW' : '');
+    return `
+      <div class="coach-card">
+        <div class="coach-card-head">
+          <div>
+            <div class="coach-card-day">${dayLong}<span class="date">${dateShort}</span></div>
+          </div>
+          <div class="coach-card-type ${isDone ? 'done' : ''}">${isDone ? '✓ ' + day.type : day.type}</div>
+        </div>
+
+        <div class="coach-block">
+          <div class="coach-block-label">A · Compound</div>
+          <div class="coach-lift-row">
+            <div class="coach-lift-name compound">${day.compound.name}</div>
+            <div class="coach-lift-detail">${compoundDetail}</div>
+          </div>
+          ${lastRef}
+        </div>
+
+        <div class="coach-block">
+          <div class="coach-block-label">B · Superset</div>
+          ${supersetRows}
+        </div>
+
+        <div class="coach-block">
+          <div class="coach-block-label">C · Accessory</div>
+          <div class="coach-lift-row">
+            <div class="coach-lift-name">${day.accessory.name}</div>
+            <div class="coach-lift-detail">${accDetail}</div>
+          </div>
+        </div>
+
+        <div class="coach-use">
+          ${isDone
+            ? `<div class="coach-done-note">✓ Logged for ${dateShort}</div>`
+            : `<button class="btn coach-use-btn" onclick="useSession('${day.date}')">Use this session →</button>`}
+        </div>
+      </div>`;
+  }).join('');
 }
 
 /* WEEK REPORT */
@@ -1399,7 +1586,7 @@ function getWeekData(weekMonISO) {
   sessions.forEach(s => {
     const liftSeen = new Set();
     s.exercises.forEach(ex => {
-      if (!ex.canonical) return;
+      if (!ex.canonical || !liftVolume[ex.canonical]) return;
       const v = setsVolume(ex.sets);
       liftVolume[ex.canonical].volume += v;
       liftVolume[ex.canonical].sets += ex.sets.length;
