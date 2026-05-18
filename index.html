@@ -530,6 +530,7 @@
 
 <script>
 const STORAGE_KEY = 'diarmo_gym_v6';
+const CREATINE_START = '2026-05-18'; // hit-ratio counts forward from this date
 
 /* Four main compound lifts get progressive overload in Coach. Others (RDL, High Incline) stay aliased so historical sessions still match, but Coach doesn't overload them. */
 const MAIN_LIFTS = ['Back Squat','Bench Press','Pendlay Row','Chin Ups'];
@@ -1187,16 +1188,22 @@ function renderCreatine() {
   }
   document.getElementById('creatineStreak').textContent = streak;
 
-  // 30-day rolling hit ratio
+  // Hit ratio counted forward from CREATINE_START (denominator grows by 1 each day).
   const ratioEl = document.getElementById('creatineHitRatio');
   if (ratioEl) {
-    let hits = 0;
-    for (let i = 0; i < 30; i++) {
-      const iso = addDays(today, -i);
-      if (state.creatine[iso]) hits++;
+    if (today < CREATINE_START) {
+      ratioEl.textContent = '—';
+    } else {
+      let elapsed = 0, hits = 0;
+      let d = CREATINE_START;
+      while (d <= today) {
+        elapsed++;
+        if (state.creatine[d]) hits++;
+        d = addDays(d, 1);
+      }
+      const pct = elapsed > 0 ? Math.round((hits / elapsed) * 100) : 0;
+      ratioEl.innerHTML = `<span class="count">${hits}</span> / ${elapsed} · ${pct}%`;
     }
-    const pct = Math.round((hits / 30) * 100);
-    ratioEl.innerHTML = `<span class="count">${hits}</span> / 30 · ${pct}%`;
   }
 }
 
